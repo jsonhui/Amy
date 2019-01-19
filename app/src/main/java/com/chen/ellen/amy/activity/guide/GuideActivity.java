@@ -7,23 +7,43 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.chen.ellen.amy.R;
 import com.chen.ellen.amy.activity.guide.GuideAgree.GuideView;
 import com.chen.ellen.amy.activity.main.MainActivity;
 import com.chen.ellen.amy.activity.splash.SplashActivity;
 import com.chen.ellen.amy.base.BaseActivity;
+import com.chen.ellen.amy.fragment.GuideFragment;
 import com.chen.ellen.amy.util.MMKVUtils;
 import com.chen.ellen.amy.util.ToastUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class GuideActivity extends BaseActivity<GuidePresenter> implements GuideView {
 
     @BindView(R.id.vp_guide)
     ViewPager viewPager;
+    @BindView(R.id.bt_guide)
+    Button btGuide;
+
+    @OnClick(R.id.bt_guide)
+    void onClick(View view){
+        mPresenter.saveFirstLauncher(true);
+        jumpToActivirtAndDestory(MainActivity.class);
+    }
+
+    private List<Integer> integerList;
 
     private String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -80,6 +100,42 @@ public class GuideActivity extends BaseActivity<GuidePresenter> implements Guide
 
     @Override
     protected void initView() {
+        integerList = new ArrayList<>();
+        integerList.add(1);
+        integerList.add(2);
+        integerList.add(3);
+        integerList.add(4);
+        viewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int i) {
+                return new GuideFragment(i);
+            }
+
+            @Override
+            public int getCount() {
+                return integerList.size();
+            }
+        });
+       viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+           @Override
+           public void onPageScrolled(int i, float v, int i1) {
+
+           }
+
+           @Override
+           public void onPageSelected(int i) {
+               if(i == integerList.size() - 1){
+                   btGuide.setVisibility(View.VISIBLE);
+               }else {
+                   btGuide.setVisibility(View.GONE);
+               }
+           }
+
+           @Override
+           public void onPageScrollStateChanged(int i) {
+
+           }
+       });
     }
 
     @Override

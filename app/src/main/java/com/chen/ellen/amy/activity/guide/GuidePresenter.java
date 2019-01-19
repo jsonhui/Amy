@@ -11,6 +11,6 @@ public class GuidePresenter extends GuideAgree.GuidePresenter {
 
     @Override
     protected void saveFirstLauncher(boolean isFirst) {
-
+            mModel.save(isFirst);
     }
 }

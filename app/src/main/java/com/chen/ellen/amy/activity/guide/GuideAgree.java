@@ -10,7 +10,7 @@ public interface GuideAgree {
 
     interface GuideModel extends BaseModel{
         //保存向导的首次启动的标记
-        void save();
+        void save(boolean b);
     }
 
     interface GuideView extends BaseView{

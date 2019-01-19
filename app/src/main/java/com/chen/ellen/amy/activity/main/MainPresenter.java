@@ -11,7 +11,6 @@ public class MainPresenter extends MainArgee.MainPresenter {
     @Override
     public void showMusicData(Context context) {
         List<Music> musicList = mModel.getLocalAllMusic(context);
-        ToastUtils.toast(context,String.valueOf(musicList.size()));
         mView.showMusicData(musicList);
     }
 }
