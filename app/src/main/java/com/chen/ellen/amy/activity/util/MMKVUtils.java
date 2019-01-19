@@ -51,7 +51,7 @@ public class MMKVUtils {
         } else if (defalutValue instanceof Boolean) {
             result = mmkv.decodeBool(key, (Boolean) defalutValue);
         } else {
-            //如果不是基本类型则以toString的方式保存
+            //如果不是基本类型则以toString的方式保存1
             result = mmkv.decodeString(key, defalutValue.toString());
         }
         return result;
