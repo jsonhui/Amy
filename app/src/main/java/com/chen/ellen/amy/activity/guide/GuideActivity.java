@@ -5,7 +5,6 @@ import android.support.v4.view.ViewPager;
 import com.chen.ellen.amy.R;
 import com.chen.ellen.amy.activity.guide.GuideAgree.GuideView;
 import com.chen.ellen.amy.base.BaseActivity;
-import com.chen.ellen.basemvp.view.BaseView;
 
 import butterknife.BindView;
 

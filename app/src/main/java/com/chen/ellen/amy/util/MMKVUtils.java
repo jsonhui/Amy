@@ -1,4 +1,4 @@
-package com.chen.ellen.amy.activity.util;
+package com.chen.ellen.amy.util;
 
 import com.tencent.mmkv.MMKV;
 

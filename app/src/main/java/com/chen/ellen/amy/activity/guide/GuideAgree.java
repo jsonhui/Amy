@@ -1,7 +1,7 @@
 package com.chen.ellen.amy.activity.guide;
 
-import com.chen.ellen.basemvp.model.BaseModel;
-import com.chen.ellen.basemvp.view.BaseView;
+import com.chen.ellen.amy.basemvp.model.BaseModel;
+import com.chen.ellen.amy.basemvp.view.BaseView;
 
 public interface GuideAgree {
 

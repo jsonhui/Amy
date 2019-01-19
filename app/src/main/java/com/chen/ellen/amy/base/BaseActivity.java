@@ -4,8 +4,8 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.chen.ellen.basemvp.base.BaseMvpActivity;
-import com.chen.ellen.basemvp.presenter.BasePresenter;
+import com.chen.ellen.amy.basemvp.base.BaseMvpActivity;
+import com.chen.ellen.amy.basemvp.presenter.BasePresenter;
 
 import butterknife.ButterKnife;
 
