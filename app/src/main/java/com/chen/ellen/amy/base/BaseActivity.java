@@ -41,8 +41,14 @@ public abstract class BaseActivity<P extends BasePresenter> extends BaseMvpActiv
     protected abstract int setLayout();
     protected abstract void initMvp();
 
-    protected void jumpToActivvity(Class activityClass){
+    protected void jumpToActivity(Class activityClass){
         Intent intent = new Intent(context,activityClass);
         startActivity(intent);
+    }
+
+    protected void jumpToActivirtAndDestory(Class activityClass){
+        Intent intent = new Intent(context,activityClass);
+        startActivity(intent);
+        finish();
     }
 }
