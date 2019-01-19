@@ -1,17 +1,18 @@
 package com.chen.ellen.amy.activity.guide;
 
-import android.widget.TextView;
+import android.support.v4.view.ViewPager;
 
 import com.chen.ellen.amy.R;
+import com.chen.ellen.amy.activity.guide.GuideAgree.GuideView;
 import com.chen.ellen.amy.base.BaseActivity;
-import com.chen.ellen.basemvp.base.BaseMvpActivity;
+import com.chen.ellen.basemvp.view.BaseView;
 
 import butterknife.BindView;
 
 public class GuideActivity extends BaseActivity<GuidePresenter> implements GuideView {
 
-    @BindView(R.id.tv1)
-    TextView textView;
+    @BindView(R.id.vp_guide)
+    ViewPager viewPager;
 
     @Override
     protected Boolean setOrientation() {
@@ -20,7 +21,6 @@ public class GuideActivity extends BaseActivity<GuidePresenter> implements Guide
 
     @Override
     protected void initView() {
-      textView.setText("initView");
     }
 
     @Override
