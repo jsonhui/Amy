@@ -1,5 +1,8 @@
 package com.chen.ellen.amy.base;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,11 +14,13 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity<P extends BasePresenter> extends BaseMvpActivity<P> {
 
+    protected Context context;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(setLayout());
         ButterKnife.bind(this);
+        context = this;
         initMvp();
         initView();
         initData();
@@ -36,5 +41,8 @@ public abstract class BaseActivity<P extends BasePresenter> extends BaseMvpActiv
     protected abstract int setLayout();
     protected abstract void initMvp();
 
-
+    protected void jumpToActivvity(Class activityClass){
+        Intent intent = new Intent(context,activityClass);
+        startActivity(intent);
+    }
 }

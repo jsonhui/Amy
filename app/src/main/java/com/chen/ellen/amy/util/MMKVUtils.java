@@ -4,17 +4,23 @@ import com.tencent.mmkv.MMKV;
 
 public class MMKVUtils {
 
+    private static MMKVUtils mmkvUtils;
+
+    private MMKVUtils(){
+        mmkv = MMKV.defaultMMKV();
+    }
+
     private MMKV mmkv;
 
-    public MMKV getInstance() {
-        if (mmkv == null) {
+    public static MMKVUtils getInstance() {
+        if (mmkvUtils == null) {
             synchronized (MMKVUtils.class) {
-                if (mmkv == null) {
-                    mmkv = MMKV.defaultMMKV();
+                if (mmkvUtils == null) {
+                    mmkvUtils = new MMKVUtils();
                 }
             }
         }
-        return mmkv;
+        return mmkvUtils;
     }
 
     public void save(String key, Object value) {
