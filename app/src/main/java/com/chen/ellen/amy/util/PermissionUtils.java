@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 
 import java.lang.ref.WeakReference;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
