@@ -21,8 +21,7 @@ import com.chen.ellen.amy.activity.main.MainActivity;
 import com.chen.ellen.amy.activity.splash.SplashActivity;
 import com.chen.ellen.amy.base.BaseActivity;
 import com.chen.ellen.amy.fragment.GuideFragment;
-import com.chen.ellen.amy.util.MMKVUtils;
-import com.chen.ellen.amy.util.ToastUtils;
+import com.chen.ellen.amy.util.PermissionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +35,8 @@ public class GuideActivity extends BaseActivity<GuidePresenter> implements Guide
     ViewPager viewPager;
     @BindView(R.id.bt_guide)
     Button btGuide;
+
+    private PermissionUtils permissionUtils;
 
     @OnClick(R.id.bt_guide)
     void onClick(View view){
@@ -58,6 +59,7 @@ public class GuideActivity extends BaseActivity<GuidePresenter> implements Guide
         if(mPresenter.getIsFirstLauncher()) {
            jumpToActivirtAndDestory(SplashActivity.class);
         }
+        permissionUtils = new PermissionUtils(this,this);
     }
 
     @Override
@@ -68,29 +70,24 @@ public class GuideActivity extends BaseActivity<GuidePresenter> implements Guide
 
     private void checkPermission() {
         //检测app需要的权限
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_PERMISSION_CODE);
+        permissionUtils.checkPermissions(PERMISSIONS_STORAGE, 0, new PermissionUtils.PermissionCallback() {
+            @Override
+            public void success() {
+
             }
-        }
+
+            @Override
+            public void failure() {
+                 finish();
+            }
+        });
+
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_PERMISSION_CODE) {
-            int sum = 0;
-            for (int i = 0; i < permissions.length; i++) {
-                if(grantResults[i] == 0){
-                    sum++;
-                }
-            }
-            if(sum == 2){
-                //已经获取了权限
-            }else {
-                finish();
-            }
-        }
+        permissionUtils.onRequestPermissionsResult(requestCode,permissions,grantResults);
     }
 
     @Override
