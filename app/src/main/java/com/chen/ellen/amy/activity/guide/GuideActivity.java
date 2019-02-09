@@ -70,7 +70,7 @@ public class GuideActivity extends BaseActivity<GuidePresenter> implements Guide
 
     private void checkPermission() {
         //检测app需要的权限
-        permissionUtils.checkPermissions(PERMISSIONS_STORAGE, 0, new PermissionUtils.PermissionCallback() {
+        permissionUtils.checkPermissions(PERMISSIONS_STORAGE, REQUEST_PERMISSION_CODE, new PermissionUtils.PermissionCallback() {
             @Override
             public void success() {
 
